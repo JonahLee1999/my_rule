@@ -1,6 +1,8 @@
 # Claude / Claude Code 规则维护说明
 
-核验日期：2026-10-10。`claude.list` 当前有 **47 条规则**。文件是人工核验后的合并版，GitHub 托管不会自动合并其他仓库的新内容。
+核验日期：2026-10-10。`claude.list` 当前有 **56 条规则**。文件是人工核验后的合并版，GitHub 托管不会自动合并其他仓库的新内容。
+
+本轮全网查漏新增 9 条：`claude.app` 后缀、7 个 Artifacts 字体/脚本 CDN 精确主机，以及可选的 Gerrit review 主机模式。详见 [最新覆盖审计](claude-audit-20261010.md) 和 [官方域名逐项比对](claude-official-coverage.csv)。
 
 ## 使用
 
@@ -10,7 +12,7 @@ RULE-SET,https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
 
 将 `ClaudeAI` 换成自己的策略组。希望收录的服务统一使用该组时，应放在广告拦截及 GitHub/Google 等通用规则之前。本列表包含共享支付、验证码、遥测和下载服务；其他应用访问这些相同目标也会匹配。
 
-## 本轮新增：40 → 47
+## 前轮新增：40 → 47
 
 | 规则 | 用途和依据 |
 | --- | --- |
@@ -54,7 +56,7 @@ RULE-SET,https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
 
 本轮未加入 `session-replay-datadoghq.com`：[Datadog 官方说明](https://docs.datadoghq.com/session_replay/troubleshooting/)其用于回放查看，而现有证据不足以把它认定为 Claude Code 的运行依赖。未改变进程规则、QUIC、系统时区或 NTP 路由。
 
-## 核验
+## 前轮 47 条版本核验
 
 - 原有 40 条全部保留；新增 7 条；共 47 条，无重复行，新增项没有被已有域名后缀覆盖。
 - 全部规则展开到临时 Surge 配置，通过官方 `surge-cli --check` 解析。

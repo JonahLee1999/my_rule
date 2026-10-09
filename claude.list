@@ -1,10 +1,10 @@
 # NAME: Claude Full
 # UPDATED: 2026-10-10
-# TOTAL: 47
+# TOTAL: 56
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
-# REVIEW: 2026-10-10 Claude Code follow-up; see claude-notes.md
+# REVIEW: 2026-10-10 official CLI/Desktop/Artifacts audit; see claude-audit-20261010.md
 # Manually reviewed merge; upstream changes are not automatically merged.
 # Shared payment, CAPTCHA, telemetry and download hosts affect other apps too.
 # Sources:
@@ -24,6 +24,8 @@
 # https://docs.github.com/en/enterprise-cloud@latest/actions/reference/runners/self-hosted-runners
 # https://www.twilio.com/docs/segment/connections/sources/catalog/libraries/website/javascript/custom-proxy
 # https://code.claude.com/docs/en/network-config
+# https://code.claude.com/docs/en/desktop#network-access-requirements
+# https://code.claude.com/docs/en/artifacts#allowlist-the-viewer-domain
 # https://platform.claude.com/docs/en/api/ip-addresses
 # anthropic.ai is an additional user-supplied domain.
 # Narrow Sentry/Datadog targets replace broad keywords; IP ranges use official inbound ranges.
@@ -33,12 +35,23 @@ DOMAIN-SUFFIX,anthropic.ai
 DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,clau.de
 DOMAIN-SUFFIX,claude.ai
+DOMAIN-SUFFIX,claude.app
 DOMAIN-SUFFIX,claude.com
 DOMAIN-SUFFIX,claude.dev
 DOMAIN-SUFFIX,claude.site
 DOMAIN-SUFFIX,claudemcpclient.com
 DOMAIN-SUFFIX,claudemcpcontent.com
 DOMAIN-SUFFIX,claudeusercontent.com
+
+# Artifacts 的共享字体和 JavaScript CDN（会影响其他网站）
+# 官方列出的两个字体主机和五个脚本 CDN；仅使用精确域名。
+DOMAIN,fonts.googleapis.com
+DOMAIN,fonts.gstatic.com
+DOMAIN,cdnjs.cloudflare.com
+DOMAIN,cdn.jsdelivr.net
+DOMAIN,cdn.tailwindcss.com
+DOMAIN,code.jquery.com
+DOMAIN,unpkg.com
 
 # 专用 CDN、认证、内容及 Sentry 项目端点
 DOMAIN,anthropic.com.cdn.cloudflare.net
@@ -89,6 +102,9 @@ DOMAIN,objects.githubusercontent.com
 DOMAIN,release-assets.githubusercontent.com
 DOMAIN,registry.npmjs.org
 DOMAIN,formulae.brew.sh
+
+# Desktop Code 在 googlesource.com 仓库查询 Gerrit 变更时使用（可选功能）
+DOMAIN-WILDCARD,*-review.googlesource.com
 
 # MCP 规范文档站（非运行时必需）
 DOMAIN-SUFFIX,modelcontextprotocol.io
