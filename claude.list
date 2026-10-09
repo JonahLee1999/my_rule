@@ -1,9 +1,10 @@
 # NAME: Claude Full
 # UPDATED: 2026-10-10
-# TOTAL: 40
+# TOTAL: 47
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
+# REVIEW: 2026-10-10 Claude Code follow-up; see claude-notes.md
 # Manually reviewed merge; upstream changes are not automatically merged.
 # Shared payment, CAPTCHA, telemetry and download hosts affect other apps too.
 # Sources:
@@ -15,6 +16,13 @@
 # https://github.com/xiaolai/anthropic-claude-surge-rules-set/blob/main/dist/anthropic.list
 # https://github.com/v2fly/domain-list-community/blob/master/data/anthropic
 # https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Claude/Claude.list
+# https://github.com/ma-wenqian/ai-proxy-rules/blob/main/rules/claude.list
+# https://github.com/cnsiming/ProxyRules/blob/main/Claude.list
+# https://github.com/www011215/Surge_rule_list/blob/main/Surge_AI.list
+# https://github.com/patrickschmelter/claude-code-sandbox/blob/main/allowed-domains.txt
+# https://github.com/anthropics/claude-code/blob/main/.devcontainer/init-firewall.sh
+# https://docs.github.com/en/enterprise-cloud@latest/actions/reference/runners/self-hosted-runners
+# https://www.twilio.com/docs/segment/connections/sources/catalog/libraries/website/javascript/custom-proxy
 # https://code.claude.com/docs/en/network-config
 # https://platform.claude.com/docs/en/api/ip-addresses
 # anthropic.ai is an additional user-supplied domain.
@@ -48,7 +56,12 @@ DOMAIN,browser-intake-us5-datadoghq.com
 DOMAIN,http-intake.logs.us5.datadoghq.com
 DOMAIN-SUFFIX,datadoghq-browser-agent.com
 DOMAIN-SUFFIX,statsigapi.net
+# Statsig compatibility: listed by the official Claude Code devcontainer firewall.
+DOMAIN-SUFFIX,statsig.com
 DOMAIN-SUFFIX,growthbook.io
+# Segment web analytics compatibility: use exact CDN/API hosts rather than all Segment domains.
+DOMAIN,cdn.segment.com
+DOMAIN,api.segment.io
 
 # 共享客服服务（会影响其他网站）
 DOMAIN-SUFFIX,intercom.io
@@ -69,6 +82,11 @@ DOMAIN-SUFFIX,payments.google.com
 DOMAIN,storage.googleapis.com
 DOMAIN,raw.githubusercontent.com
 DOMAIN,github.com
+# GitHub API, source archives and release downloads used by development/plugin workflows.
+DOMAIN,api.github.com
+DOMAIN,codeload.github.com
+DOMAIN,objects.githubusercontent.com
+DOMAIN,release-assets.githubusercontent.com
 DOMAIN,registry.npmjs.org
 DOMAIN,formulae.brew.sh
 
