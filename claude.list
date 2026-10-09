@@ -1,10 +1,10 @@
 # NAME: Claude Full
 # UPDATED: 2026-10-10
-# TOTAL: 56
+# TOTAL: 64
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
-# REVIEW: 2026-10-10 official CLI/Desktop/Artifacts audit; see claude-audit-20261010.md
+# REVIEW: 2026-10-10 login/plugin dependency audit; see claude-workflow-audit-20261010.md
 # Manually reviewed merge; upstream changes are not automatically merged.
 # Shared payment, CAPTCHA, telemetry and download hosts affect other apps too.
 # Sources:
@@ -26,6 +26,15 @@
 # https://code.claude.com/docs/en/network-config
 # https://code.claude.com/docs/en/desktop#network-access-requirements
 # https://code.claude.com/docs/en/artifacts#allowlist-the-viewer-domain
+# https://github.com/anthropics/claude-plugins-official/blob/main/external_plugins/github/.mcp.json
+# https://github.com/anthropics/claude-plugins-official/blob/main/external_plugins/playwright/.mcp.json
+# https://github.com/anthropics/devcontainer-features/blob/main/src/claude-code/README.md
+# https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/server/registry/index.ts
+# https://github.com/modelcontextprotocol/servers/blob/main/src/fetch/README.md
+# https://docs.astral.sh/uv/concepts/indexes/
+# https://docs.pypi.org/api/index-api/
+# https://support.claude.com/en/articles/13189465-log-in-to-your-claude-account
+# https://developers.google.com/identity/protocols/oauth2/web-server
 # https://platform.claude.com/docs/en/api/ip-addresses
 # anthropic.ai is an additional user-supplied domain.
 # Narrow Sentry/Datadog targets replace broad keywords; IP ranges use official inbound ranges.
@@ -59,6 +68,9 @@ DOMAIN,servd-anthropic-website.b-cdn.net
 DOMAIN,anthropic.auth0.com
 DOMAIN,anthropic-com.ghost.io
 DOMAIN-SUFFIX,o1158394.ingest.us.sentry.io
+
+# Google 登录授权入口（共享：其他应用的 Google 登录也会匹配）
+DOMAIN,accounts.google.com
 
 # Fathom 分析服务（共享域名）
 DOMAIN,cdn.usefathom.com
@@ -102,6 +114,19 @@ DOMAIN,objects.githubusercontent.com
 DOMAIN,release-assets.githubusercontent.com
 DOMAIN,registry.npmjs.org
 DOMAIN,formulae.brew.sh
+
+# 可选插件与开发环境依赖（共享服务，不是每次 Claude 会话必需）
+# 官方 GitHub MCP 插件的远程服务
+DOMAIN,api.githubcopilot.com
+# 官方 Claude Code devcontainer / GitHub MCP 容器下载
+DOMAIN,ghcr.io
+DOMAIN,pkg-containers.githubusercontent.com
+# uvx / pip 启动 Python MCP 时的默认索引及包文件
+DOMAIN,pypi.org
+DOMAIN,files.pythonhosted.org
+# Playwright 插件安装所需浏览器时的官方 CDN
+DOMAIN,cdn.playwright.dev
+DOMAIN,playwright.download.prss.microsoft.com
 
 # Desktop Code 在 googlesource.com 仓库查询 Gerrit 变更时使用（可选功能）
 DOMAIN-WILDCARD,*-review.googlesource.com

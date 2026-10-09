@@ -1,8 +1,10 @@
 # Claude / Claude Code 规则维护说明
 
-核验日期：2026-10-10。`claude.list` 当前有 **56 条规则**。文件是人工核验后的合并版，GitHub 托管不会自动合并其他仓库的新内容。
+核验日期：2026-10-10。`claude.list` 当前有 **64 条规则**。文件是人工核验后的合并版，GitHub 托管不会自动合并其他仓库的新内容。
 
-本轮全网查漏新增 9 条：`claude.app` 后缀、7 个 Artifacts 字体/脚本 CDN 精确主机，以及可选的 Gerrit review 主机模式。详见 [最新覆盖审计](claude-audit-20261010.md) 和 [官方域名逐项比对](claude-official-coverage.csv)。
+本轮继续补充 8 个精确主机：Google 登录、GitHub MCP、GHCR 容器下载、Python MCP 包下载，以及 Playwright 浏览器下载。详见 [登录与插件依赖审计](claude-workflow-audit-20261010.md)。这些属于按需功能依赖，不表示所有 Claude 会话都会连接。
+
+前轮全网查漏新增 9 条：`claude.app` 后缀、7 个 Artifacts 字体/脚本 CDN 精确主机，以及可选的 Gerrit review 主机模式。详见 [56 条版本覆盖审计](claude-audit-20261010.md) 和 [官方域名逐项比对](claude-official-coverage.csv)。
 
 ## 使用
 
