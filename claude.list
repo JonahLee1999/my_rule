@@ -1,0 +1,81 @@
+# NAME: Claude Full
+# UPDATED: 2026-10-10
+# TOTAL: 40
+# FORMAT: Surge RULE-SET; policy is specified in the profile.
+# REPO: https://github.com/JonahLee1999/my_rule
+# URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
+# Manually reviewed merge; upstream changes are not automatically merged.
+# Shared payment, CAPTCHA, telemetry and download hosts affect other apps too.
+# Sources:
+# https://github.com/Sor85/claude-ruleset/blob/main/surge/claude.list
+# https://github.com/windery/claude-proxy-rules/blob/main/rules/claude.list
+# https://github.com/xyecc/claude-lane/blob/main/templates/3-rules.yaml
+# https://github.com/xyecc/claude-lane/blob/main/templates/optional-payment-rules.yaml
+# https://github.com/erwanjun/surge-claude-rules/blob/main/Surge/Claude.list
+# https://github.com/xiaolai/anthropic-claude-surge-rules-set/blob/main/dist/anthropic.list
+# https://github.com/v2fly/domain-list-community/blob/master/data/anthropic
+# https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Claude/Claude.list
+# https://code.claude.com/docs/en/network-config
+# https://platform.claude.com/docs/en/api/ip-addresses
+# anthropic.ai is an additional user-supplied domain.
+# Narrow Sentry/Datadog targets replace broad keywords; IP ranges use official inbound ranges.
+
+# 主站、API、Artifacts 与 MCP 域名
+DOMAIN-SUFFIX,anthropic.ai
+DOMAIN-SUFFIX,anthropic.com
+DOMAIN-SUFFIX,clau.de
+DOMAIN-SUFFIX,claude.ai
+DOMAIN-SUFFIX,claude.com
+DOMAIN-SUFFIX,claude.dev
+DOMAIN-SUFFIX,claude.site
+DOMAIN-SUFFIX,claudemcpclient.com
+DOMAIN-SUFFIX,claudemcpcontent.com
+DOMAIN-SUFFIX,claudeusercontent.com
+
+# 专用 CDN、认证、内容及 Sentry 项目端点
+DOMAIN,anthropic.com.cdn.cloudflare.net
+DOMAIN,servd-anthropic-website.b-cdn.net
+DOMAIN,anthropic.auth0.com
+DOMAIN,anthropic-com.ghost.io
+DOMAIN-SUFFIX,o1158394.ingest.us.sentry.io
+
+# Fathom 分析服务（共享域名）
+DOMAIN,cdn.usefathom.com
+
+# 共享遥测与功能开关（会影响其他应用）
+DOMAIN,browser-intake-datadoghq.com
+DOMAIN,browser-intake-us5-datadoghq.com
+DOMAIN,http-intake.logs.us5.datadoghq.com
+DOMAIN-SUFFIX,datadoghq-browser-agent.com
+DOMAIN-SUFFIX,statsigapi.net
+DOMAIN-SUFFIX,growthbook.io
+
+# 共享客服服务（会影响其他网站）
+DOMAIN-SUFFIX,intercom.io
+DOMAIN-SUFFIX,intercomcdn.com
+
+# 共享验证码服务（会影响其他网站）
+DOMAIN,challenges.cloudflare.com
+DOMAIN-SUFFIX,hcaptcha.com
+
+# 共享支付服务（会影响其他网站付款）
+DOMAIN-SUFFIX,stripe.com
+DOMAIN-SUFFIX,stripe.network
+DOMAIN-SUFFIX,stripecdn.com
+DOMAIN-SUFFIX,pay.google.com
+DOMAIN-SUFFIX,payments.google.com
+
+# Claude Code 下载、插件、更新日志与包管理（共享服务）
+DOMAIN,storage.googleapis.com
+DOMAIN,raw.githubusercontent.com
+DOMAIN,github.com
+DOMAIN,registry.npmjs.org
+DOMAIN,formulae.brew.sh
+
+# MCP 规范文档站（非运行时必需）
+DOMAIN-SUFFIX,modelcontextprotocol.io
+
+# Anthropic 入站 IP 与 ASN 兜底（不主动解析域名）
+IP-CIDR,160.79.104.0/23,no-resolve
+IP-CIDR6,2607:6bc0::/48,no-resolve
+IP-ASN,399358,no-resolve
