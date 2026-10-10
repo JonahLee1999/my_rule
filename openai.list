@@ -1,0 +1,97 @@
+# NAME: OpenAI / ChatGPT / Codex
+# UPDATED: 2026-10-10
+# TOTAL: 64
+# FORMAT: Surge RULE-SET; policy is specified in the profile.
+# URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/openai.list
+# REVIEW: See openai-notes.md and ai-audit-20261010.md for sources and scope.
+# Manually reviewed. Shared services may also be used by Claude and other apps.
+# Main profile: process-scoped OpenAI match first; Claude full list second;
+# this list third. Browser shared hosts retain the earlier ClaudeAI policy.
+
+# 主站、API、OAuth、Codex、WebSocket、下载、静态资源和用户文件
+# The suffixes also cover auth/api/realtime/ws/ab/desktop/releases subdomains.
+DOMAIN-SUFFIX,openai.com
+DOMAIN-SUFFIX,chatgpt.com
+DOMAIN-SUFFIX,oaistatic.com
+DOMAIN-SUFFIX,oaistatsig.com
+DOMAIN-SUFFIX,oaiusercontent.com
+DOMAIN-SUFFIX,chat.com
+DOMAIN-SUFFIX,sora.com
+
+# OpenAI 品牌专用 CDN / 对象存储（不覆盖整个 Azure 或 Cloudflare）
+DOMAIN-SUFFIX,openai.com.cdn.cloudflare.net
+DOMAIN,openaiapi-site.azureedge.net
+DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
+DOMAIN,openaicom.imgix.net
+DOMAIN,openaicomproductionae4b.blob.core.windows.net
+DOMAIN,production-openaicom-storage.azureedge.net
+DOMAIN,openaiassets.blob.core.windows.net
+DOMAIN,openaiassets.z19.web.core.windows.net
+# Installed official desktop app references this additional update channel.
+DOMAIN,oaisidekickupdates.blob.core.windows.net
+DOMAIN,cdn.openaimerge.com
+# Community-recorded ChatGPT async WebPubSub endpoint family.
+DOMAIN-WILDCARD,chatgpt-async-webps-prod-*-*.webpubsub.azure.com
+
+# ChatGPT 语音的 LiveKit 兼容域名；IP 清单另见 openai-voice.list
+DOMAIN-SUFFIX,chatgpt.livekit.cloud
+DOMAIN-SUFFIX,host.livekit.cloud
+DOMAIN-SUFFIX,turn.livekit.cloud
+
+# 官方网络清单：WorkOS 登录、企业认证、Apple 设备校验
+DOMAIN,cdn.workos.com
+DOMAIN,forwarder.workos.com
+DOMAIN,frontend-apps-multi-region.workos.com
+DOMAIN,images.workoscdn.com
+DOMAIN,setup.workos.com
+DOMAIN,workos.imgix.net
+DOMAIN,humb.apple.com
+DOMAIN,register.appattest.apple.com
+
+# 官方网络清单：邮件链接、客服、精确遥测项目
+DOMAIN-SUFFIX,ct.sendgrid.net
+DOMAIN-SUFFIX,intercom.io
+DOMAIN-SUFFIX,intercomcdn.com
+DOMAIN,o207216.ingest.sentry.io
+DOMAIN,o33249.ingest.sentry.io
+# Official installed desktop bundle additionally uses this US-region Sentry endpoint.
+DOMAIN,o33249.ingest.us.sentry.io
+DOMAIN,rum.browser-intake-datadoghq.com
+DOMAIN,browser-intake-datadoghq.com
+DOMAIN,openai.qualtrics.com
+
+# 验证码和旧版认证兼容（精确主机）
+DOMAIN,challenges.cloudflare.com
+DOMAIN,cdn.auth0.com
+DOMAIN,openai-api.arkoselabs.com
+DOMAIN,client-api.arkoselabs.com
+# 按需年龄核验：OpenAI 官方确认 Persona；不是每次登录都需要。
+DOMAIN-SUFFIX,withpersona.com
+
+# 共享支付及功能开关
+DOMAIN-SUFFIX,stripe.com
+DOMAIN-SUFFIX,stripe.network
+DOMAIN-SUFFIX,stripecdn.com
+DOMAIN-SUFFIX,link.com
+DOMAIN-SUFFIX,statsigapi.net
+DOMAIN,api.statsig.com
+# Compatibility hosts retained/narrowed from community lists.
+DOMAIN,static.cloudflareinsights.com
+DOMAIN,cdn.segment.com
+DOMAIN,api.segment.io
+
+# 共享社交登录入口（按所选登录方式使用）
+DOMAIN,accounts.google.com
+DOMAIN,appleid.apple.com
+DOMAIN,login.microsoftonline.com
+DOMAIN,login.live.com
+
+# Codex 安装、升级、插件的共享下载服务（按需使用）
+DOMAIN,github.com
+DOMAIN,api.github.com
+DOMAIN,raw.githubusercontent.com
+DOMAIN,codeload.github.com
+DOMAIN,objects.githubusercontent.com
+DOMAIN,release-assets.githubusercontent.com
+DOMAIN,registry.npmjs.org
+DOMAIN,formulae.brew.sh

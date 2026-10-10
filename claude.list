@@ -1,10 +1,10 @@
 # NAME: Claude Full
 # UPDATED: 2026-10-10
-# TOTAL: 64
+# TOTAL: 66
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
-# REVIEW: 2026-10-10 login/plugin dependency audit; see claude-workflow-audit-20261010.md
+# REVIEW: 2026-10-10 identity/payment follow-up; see ai-audit-20261010.md
 # Manually reviewed merge; upstream changes are not automatically merged.
 # Shared payment, CAPTCHA, telemetry and download hosts affect other apps too.
 # Sources:
@@ -36,6 +36,10 @@
 # https://support.claude.com/en/articles/13189465-log-in-to-your-claude-account
 # https://developers.google.com/identity/protocols/oauth2/web-server
 # https://platform.claude.com/docs/en/api/ip-addresses
+# https://support.claude.com/en/articles/14328960-identity-verification-on-claude
+# https://support.claude.com/en/articles/12997130-understanding-your-billing-address-and-tax-calculation
+# https://docs.withpersona.com/security
+# https://docs.stripe.com/security/guide
 # anthropic.ai is an additional user-supplied domain.
 # Narrow Sentry/Datadog targets replace broad keywords; IP ranges use official inbound ranges.
 
@@ -96,10 +100,15 @@ DOMAIN-SUFFIX,intercomcdn.com
 DOMAIN,challenges.cloudflare.com
 DOMAIN-SUFFIX,hcaptcha.com
 
+# 按需身份验证：Claude 官方明确使用 Persona；包含 SDK、CDN 和核验页面。
+DOMAIN-SUFFIX,withpersona.com
+
 # 共享支付服务（会影响其他网站付款）
 DOMAIN-SUFFIX,stripe.com
 DOMAIN-SUFFIX,stripe.network
 DOMAIN-SUFFIX,stripecdn.com
+# Link 钱包的认证、结账和静态资源（Stripe 官方 CSP；共享支付服务）
+DOMAIN-SUFFIX,link.com
 DOMAIN-SUFFIX,pay.google.com
 DOMAIN-SUFFIX,payments.google.com
 
