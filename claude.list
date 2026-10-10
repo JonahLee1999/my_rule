@@ -1,10 +1,10 @@
 # NAME: Claude Full
 # UPDATED: 2026-10-10
-# TOTAL: 57
+# TOTAL: 50
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
-# REVIEW: GitHub routing isolation fix; see github-routing-fix-20261010.md
+# REVIEW: Google/GitHub shared services use dedicated routing; see google-routing-fix-20261010.md
 # Manually reviewed merge; upstream changes are not automatically merged.
 # Shared payment, CAPTCHA, telemetry and download hosts affect other apps too.
 # Sources:
@@ -56,10 +56,8 @@ DOMAIN-SUFFIX,claudemcpclient.com
 DOMAIN-SUFFIX,claudemcpcontent.com
 DOMAIN-SUFFIX,claudeusercontent.com
 
-# Artifacts 的共享字体和 JavaScript CDN（会影响其他网站）
-# 官方列出的两个字体主机和五个脚本 CDN；仅使用精确域名。
-DOMAIN,fonts.googleapis.com
-DOMAIN,fonts.gstatic.com
+# Artifacts 的共享 JavaScript CDN（会影响其他网站）
+# Google Fonts 使用独立 Google 分组；此处保留五个脚本 CDN 精确主机。
 DOMAIN,cdnjs.cloudflare.com
 DOMAIN,cdn.jsdelivr.net
 DOMAIN,cdn.tailwindcss.com
@@ -73,8 +71,7 @@ DOMAIN,anthropic.auth0.com
 DOMAIN,anthropic-com.ghost.io
 DOMAIN-SUFFIX,o1158394.ingest.us.sentry.io
 
-# Google 登录授权入口（共享：其他应用的 Google 登录也会匹配）
-DOMAIN,accounts.google.com
+# Google 登录、字体、支付、云存储与源码服务使用独立 Google 分组。
 
 # Fathom 分析服务（共享域名）
 DOMAIN,cdn.usefathom.com
@@ -109,11 +106,8 @@ DOMAIN-SUFFIX,stripe.network
 DOMAIN-SUFFIX,stripecdn.com
 # Link 钱包的认证、结账和静态资源（Stripe 官方 CSP；共享支付服务）
 DOMAIN-SUFFIX,link.com
-DOMAIN-SUFFIX,pay.google.com
-DOMAIN-SUFFIX,payments.google.com
 
 # Claude Code 下载、插件、更新日志与包管理（共享服务）
-DOMAIN,storage.googleapis.com
 DOMAIN,registry.npmjs.org
 DOMAIN,formulae.brew.sh
 
@@ -125,9 +119,6 @@ DOMAIN,files.pythonhosted.org
 # Playwright 插件安装所需浏览器时的官方 CDN
 DOMAIN,cdn.playwright.dev
 DOMAIN,playwright.download.prss.microsoft.com
-
-# Desktop Code 在 googlesource.com 仓库查询 Gerrit 变更时使用（可选功能）
-DOMAIN-WILDCARD,*-review.googlesource.com
 
 # MCP 规范文档站（非运行时必需）
 DOMAIN-SUFFIX,modelcontextprotocol.io

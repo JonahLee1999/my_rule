@@ -1,6 +1,6 @@
 # NAME: OpenAI / ChatGPT / Codex
 # UPDATED: 2026-10-10
-# TOTAL: 58
+# TOTAL: 57
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/openai.list
 # REVIEW: See openai-notes.md and ai-audit-20261010.md for sources and scope.
@@ -80,8 +80,7 @@ DOMAIN,static.cloudflareinsights.com
 DOMAIN,cdn.segment.com
 DOMAIN,api.segment.io
 
-# 共享社交登录入口（按所选登录方式使用）
-DOMAIN,accounts.google.com
+# 共享社交登录入口（按所选登录方式使用）；Google 登录交给独立 Google 分组。
 DOMAIN,appleid.apple.com
 DOMAIN,login.microsoftonline.com
 DOMAIN,login.live.com

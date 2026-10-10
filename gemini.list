@@ -1,3 +1,4 @@
+# 通用 apis.google.com 使用 Google 分组，避免接管其他网站的 Google 登录。
 DOMAIN,gemini.google.com
 DOMAIN-SUFFIX,gemini.google.com
 DOMAIN-KEYWORD,gemini
@@ -9,7 +10,6 @@ DOMAIN-SUFFIX,deepmind.com
 DOMAIN-SUFFIX,deepmind.google
 DOMAIN-SUFFIX,generativeai.google
 DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com
-DOMAIN-SUFFIX,apis.google.com
 DOMAIN-KEYWORD,colab
 DOMAIN-KEYWORD,developerprofiles
 DOMAIN-KEYWORD,generativelanguage

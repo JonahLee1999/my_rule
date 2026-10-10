@@ -1,6 +1,8 @@
 # OpenAI / ChatGPT / Codex 分流规则
 
-核验日期：2026-10-10。`openai.list` 有 **58 条域名规则**；`openai-voice.list` 有 **23 条官方语音目的 IP 规则**。两者由本仓库托管，人工核验更新。不是所有条目都属于每次聊天的必需依赖。
+核验日期：2026-10-10。`openai.list` 有 **57 条域名规则**；`openai-voice.list` 有 **23 条官方语音目的 IP 规则**。两者由本仓库托管，人工核验更新。不是所有条目都属于每次聊天的必需依赖。
+
+Google 登录已从本列表移除，使用独立 Google 分组，即使来自 ChatGPT/Codex 进程也如此。详见 [Google 分流修正](google-routing-fix-20261010.md)。
 
 ## 配置和共享域名优先级
 
@@ -18,7 +20,7 @@ RULE-SET,https://raw.githubusercontent.com/JonahLee1999/my_rule/main/openai.list
 AND,((OR,((DEST-PORT,3478),(DEST-PORT,443))),(RULE-SET,https://raw.githubusercontent.com/JonahLee1999/my_rule/main/openai-voice.list)),OpenAI
 ```
 
-Surge 按顺序匹配。浏览器访问相同的 Stripe、Intercom 或 Google 登录主机时，仅靠目标域名无法判断来自哪个网页，因此这些重叠目标仍优先归 ClaudeAI。这延续 Claude 完整版的配置选择；ChatGPT/Codex 客户端识别成功时，第一条联合规则使其走 OpenAI。CLI 启动的独立 npm、git、curl 等子进程不自动继承父进程的匹配。Surge iOS 不支持这些进程规则。
+Surge 按顺序匹配。浏览器访问相同的 Stripe 或 Intercom 主机时，仅靠目标域名无法判断来自哪个网页，因此这些重叠目标仍优先归 ClaudeAI。这延续 Claude 完整版的配置选择；ChatGPT/Codex 客户端识别成功时，第一条联合规则使其走 OpenAI。CLI 启动的独立 npm、git、curl 等子进程不自动继承父进程的匹配。Surge iOS 不支持这些进程规则。
 
 参见 [Surge 逻辑规则](https://manual.nssurge.com/rules/logical.html) 和 [进程规则](https://manual.nssurge.com/rules/process.html)。不需要开启 HTTPS 解密。规则集更新不会修改策略组当前选择。
 
@@ -32,7 +34,7 @@ Surge 按顺序匹配。浏览器访问相同的 Stripe、Intercom 或 Google �
 | 桌面端附加存储/遥测 | 安装的官方桌面应用公开程序资源包含 `oaisidekickupdates.blob.core.windows.net`、`openaiassets.z19.web.core.windows.net`、`openaiassets.blob.core.windows.net`、`o33249.ingest.us.sentry.io` 和 `openai.qualtrics.com`。静态代码出现不等于每次会连接；前者包含额外更新通道。 |
 | Persona 年龄核验 | [OpenAI 官方说明](https://help.openai.com/en/articles/8411987-why-am-i-being-asked-to-verify-my-age)确认提供商；[Persona 网络域名表](https://docs.withpersona.com/security)确认 `withpersona.com` 域名范围。仅相关流程使用。 |
 | Stripe / Link 支付 | [OpenAI 支付方式](https://help.openai.com/en/articles/10421635-multicurrency-billing)确认 Link；[Stripe 官方 CSP](https://docs.stripe.com/security/guide)确认 Link 结账和静态资源域名。Stripe 辅助域名保留共享支付兼容性。 |
-| Google / Apple / Microsoft 登录入口 | [ChatGPT 登录说明](https://help.openai.com/en/articles/7426629-why-cant-i-log-in-to-chatgpt)及官方登录页面支持这些方式；提供商的 OAuth 文档确认入口。属于按需流程，未实际登录或更改账号。 |
+| Google / Apple / Microsoft 登录入口 | [ChatGPT 登录说明](https://help.openai.com/en/articles/7426629-why-cant-i-log-in-to-chatgpt)及官方登录页面支持这些方式；提供商的 OAuth 文档确认入口。属于按需流程；Google 入口已交给独立 Google 分组，未实际登录或更改账号。 |
 | LiveKit、WebPubSub、旧版 CDN / Arkose / Segment | 社区维护列表提供兼容性依据，见 [联合审计](ai-audit-20261010.md)。WebPubSub 使用限定 ChatGPT 名称的通配符，不覆盖整个 Azure。 |
 
 GitHub 网站、API、Raw 和 Release 下载已从本表移除，交给独立 GitHub 分组；即使来自 ChatGPT/Codex 进程也不会被本表接管。官方列出 GitHub 下载依赖，不代表它应该全局走 AI 组。详见 [GitHub 分流修正](github-routing-fix-20261010.md)。
@@ -47,6 +49,6 @@ GitHub 网站、API、Raw 和 Release 下载已从本表移除，交给独立 Gi
 
 ## 与旧 blackmatrix7 列表的差异
 
-旧版为 35 条，新版主列表 58 条，另有 23 条语音 IP；不是简单叠加条目。补齐官方新增端点，并收窄旧表的 `auth0.com`、`sentry.io`、`segment.io` 为已知主机。未沿用 `DOMAIN-KEYWORD,openai`、整个 `IP-ASN,20473`、两个无当前官方语音依据的旧 IP、以及缺少当前使用依据的 `ai.com`、`algolia.net`、`featuregates.org`、`identrust.com`、`launchdarkly.com`、`observeit.net`。
+旧版为 35 条，新版主列表 57 条，另有 23 条语音 IP；不是简单叠加条目。补齐官方新增端点，并收窄旧表的 `auth0.com`、`sentry.io`、`segment.io` 为已知主机。未沿用 `DOMAIN-KEYWORD,openai`、整个 `IP-ASN,20473`、两个无当前官方语音依据的旧 IP、以及缺少当前使用依据的 `ai.com`、`algolia.net`、`featuregates.org`、`identrust.com`、`launchdarkly.com`、`observeit.net`。
 
 同样没有按名称猜测加入 `crixet.com`、`chatgpt.site`、任意自定义网关或所有 `azure.com` / `blob.core.windows.net`。需要时应依据实际功能端点补充。
