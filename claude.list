@@ -1,10 +1,10 @@
 # NAME: Claude Full
 # UPDATED: 2026-10-10
-# TOTAL: 66
+# TOTAL: 57
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
-# REVIEW: 2026-10-10 identity/payment follow-up; see ai-audit-20261010.md
+# REVIEW: GitHub routing isolation fix; see github-routing-fix-20261010.md
 # Manually reviewed merge; upstream changes are not automatically merged.
 # Shared payment, CAPTCHA, telemetry and download hosts affect other apps too.
 # Sources:
@@ -114,22 +114,11 @@ DOMAIN-SUFFIX,payments.google.com
 
 # Claude Code 下载、插件、更新日志与包管理（共享服务）
 DOMAIN,storage.googleapis.com
-DOMAIN,raw.githubusercontent.com
-DOMAIN,github.com
-# GitHub API, source archives and release downloads used by development/plugin workflows.
-DOMAIN,api.github.com
-DOMAIN,codeload.github.com
-DOMAIN,objects.githubusercontent.com
-DOMAIN,release-assets.githubusercontent.com
 DOMAIN,registry.npmjs.org
 DOMAIN,formulae.brew.sh
 
 # 可选插件与开发环境依赖（共享服务，不是每次 Claude 会话必需）
-# 官方 GitHub MCP 插件的远程服务
-DOMAIN,api.githubcopilot.com
-# 官方 Claude Code devcontainer / GitHub MCP 容器下载
-DOMAIN,ghcr.io
-DOMAIN,pkg-containers.githubusercontent.com
+# GitHub / GitHub MCP / GHCR use dedicated GitHub routing; excluded from this global AI list.
 # uvx / pip 启动 Python MCP 时的默认索引及包文件
 DOMAIN,pypi.org
 DOMAIN,files.pythonhosted.org

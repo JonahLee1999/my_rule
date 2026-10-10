@@ -1,8 +1,10 @@
 # Claude / Claude Code 规则维护说明
 
-核验日期：2026-10-10。`claude.list` 当前有 **66 条规则**。文件是人工核验后的合并版，GitHub 托管不会自动合并其他仓库的新内容。
+核验日期：2026-10-10。`claude.list` 当前有 **57 条规则**。文件是人工核验后的合并版，GitHub 托管不会自动合并其他仓库的新内容。
 
-最新补充 `withpersona.com`（按需身份验证）和 `link.com`（Link 钱包支付）。Anthropic 帮助中心确认这两种功能，Persona/Stripe 官方资料确认域名范围。详见 [Claude / OpenAI 联合审计](ai-audit-20261010.md)。与 OpenAI 共用的域名默认保留 Claude 优先；可识别的 ChatGPT/Codex 客户端通过进程与目标规则集的联合匹配归 OpenAI，详见 [OpenAI 配置说明](openai-notes.md)。
+最新修正：移除 9 条 GitHub / GitHub MCP / GHCR 通用规则，让 GitHub 使用独立分组，避免住宅代理故障同时影响代码托管服务。详见 [GitHub 分流修正](github-routing-fix-20261010.md)。下方各轮新增表为历史审计，涉及 GitHub 的条目已撤回。
+
+前轮补充 `withpersona.com`（按需身份验证）和 `link.com`（Link 钱包支付）。Anthropic 帮助中心确认这两种功能，Persona/Stripe 官方资料确认域名范围。详见 [Claude / OpenAI 联合审计](ai-audit-20261010.md)。与 OpenAI 共用的域名默认保留 Claude 优先；可识别的 ChatGPT/Codex 客户端通过进程与目标规则集的联合匹配归 OpenAI，详见 [OpenAI 配置说明](openai-notes.md)。
 
 前轮补充 8 个精确主机：Google 登录、GitHub MCP、GHCR 容器下载、Python MCP 包下载，以及 Playwright 浏览器下载。详见 [登录与插件依赖审计](claude-workflow-audit-20261010.md)。这些属于按需功能依赖，不表示所有 Claude 会话都会连接。
 

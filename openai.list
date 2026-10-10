@@ -1,6 +1,6 @@
 # NAME: OpenAI / ChatGPT / Codex
 # UPDATED: 2026-10-10
-# TOTAL: 64
+# TOTAL: 58
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/openai.list
 # REVIEW: See openai-notes.md and ai-audit-20261010.md for sources and scope.
@@ -86,12 +86,7 @@ DOMAIN,appleid.apple.com
 DOMAIN,login.microsoftonline.com
 DOMAIN,login.live.com
 
-# Codex 安装、升级、插件的共享下载服务（按需使用）
-DOMAIN,github.com
-DOMAIN,api.github.com
-DOMAIN,raw.githubusercontent.com
-DOMAIN,codeload.github.com
-DOMAIN,objects.githubusercontent.com
-DOMAIN,release-assets.githubusercontent.com
+# Codex 包管理安装与更新（按需使用）
+# GitHub downloads use dedicated GitHub routing; excluded from this global AI list.
 DOMAIN,registry.npmjs.org
 DOMAIN,formulae.brew.sh
