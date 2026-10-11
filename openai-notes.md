@@ -1,8 +1,10 @@
 # OpenAI / ChatGPT / Codex 分流规则
 
-核验日期：2026-10-10。`openai.list` 有 **57 条域名规则**；`openai-voice.list` 有 **23 条官方语音目的 IP 规则**。两者由本仓库托管，人工核验更新。不是所有条目都属于每次聊天的必需依赖。
+核验日期：2026-10-11。`openai.list` 有 **57 条域名规则**；`openai-voice.list` 有 **23 条官方语音目的 IP 规则**。两者由本仓库托管，人工核验更新。不是所有条目都属于每次聊天的必需依赖。
 
 Google 登录已从本列表移除，使用独立 Google 分组，即使来自 ChatGPT/Codex 进程也如此。详见 [Google 分流修正](google-routing-fix-20261010.md)。
+
+2026-10-11 参考 Extra_AI.list，将 api.statsig.com、client-api.arkoselabs.com、openaiapi-site.azureedge.net、openaicom.imgix.net 从精确主机扩展为同端点的后缀匹配，规则数量仍为 57。没有把整个 auth0.com、segment.io 或 AS20473 加入全局 AI 路由。详见 [本轮更新](ai-provider-update-20261011.md)。
 
 ## 配置和共享域名优先级
 
@@ -11,6 +13,7 @@ Google 登录已从本列表移除，使用独立 Google 分组，即使来自 C
 ```ini
 # 可识别的 ChatGPT/Codex 进程：列表中的共享服务也归 OpenAI。
 AND,((OR,((PROCESS-NAME,/Applications/ChatGPT.app/),(PROCESS-NAME,/Applications/Codex.app/),(PROCESS-NAME,codex))),(RULE-SET,https://raw.githubusercontent.com/JonahLee1999/my_rule/main/openai.list,extended-matching)),OpenAI
+# 本机另有 Claude App / CLI 的纯进程全量分流，位于域名列表之前。
 # Claude 完整版保留共享服务的默认优先级。
 RULE-SET,https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list,ClaudeAI,extended-matching,update-interval=86400
 DOMAIN-KEYWORD,claude,ClaudeAI,extended-matching

@@ -1,9 +1,10 @@
 # NAME: OpenAI / ChatGPT / Codex
-# UPDATED: 2026-10-10
+# UPDATED: 2026-10-11
 # TOTAL: 57
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/openai.list
-# REVIEW: See openai-notes.md and ai-audit-20261010.md for sources and scope.
+# REVIEW: See ai-provider-update-20261011.md, openai-notes.md and ai-audit-20261010.md.
+# Extra_AI compatibility: suffix scope for four already-listed service endpoints.
 # Manually reviewed. Shared services may also be used by Claude and other apps.
 # Main profile: process-scoped OpenAI match first; Claude full list second;
 # this list third. Browser shared hosts retain the earlier ClaudeAI policy.
@@ -20,9 +21,9 @@ DOMAIN-SUFFIX,sora.com
 
 # OpenAI 品牌专用 CDN / 对象存储（不覆盖整个 Azure 或 Cloudflare）
 DOMAIN-SUFFIX,openai.com.cdn.cloudflare.net
-DOMAIN,openaiapi-site.azureedge.net
+DOMAIN-SUFFIX,openaiapi-site.azureedge.net
 DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
-DOMAIN,openaicom.imgix.net
+DOMAIN-SUFFIX,openaicom.imgix.net
 DOMAIN,openaicomproductionae4b.blob.core.windows.net
 DOMAIN,production-openaicom-storage.azureedge.net
 DOMAIN,openaiassets.blob.core.windows.net
@@ -64,7 +65,7 @@ DOMAIN,openai.qualtrics.com
 DOMAIN,challenges.cloudflare.com
 DOMAIN,cdn.auth0.com
 DOMAIN,openai-api.arkoselabs.com
-DOMAIN,client-api.arkoselabs.com
+DOMAIN-SUFFIX,client-api.arkoselabs.com
 # 按需年龄核验：OpenAI 官方确认 Persona；不是每次登录都需要。
 DOMAIN-SUFFIX,withpersona.com
 
@@ -74,7 +75,7 @@ DOMAIN-SUFFIX,stripe.network
 DOMAIN-SUFFIX,stripecdn.com
 DOMAIN-SUFFIX,link.com
 DOMAIN-SUFFIX,statsigapi.net
-DOMAIN,api.statsig.com
+DOMAIN-SUFFIX,api.statsig.com
 # Compatibility hosts retained/narrowed from community lists.
 DOMAIN,static.cloudflareinsights.com
 DOMAIN,cdn.segment.com
