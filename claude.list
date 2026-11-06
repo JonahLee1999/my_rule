@@ -1,6 +1,6 @@
 # NAME: Claude Full
 # UPDATED: 2026-11-07
-# TOTAL: 53
+# TOTAL: 68
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
@@ -8,6 +8,7 @@
 # Manually reviewed merge; upstream changes are not automatically merged.
 # Shared payment, CAPTCHA, telemetry and download hosts affect other apps too.
 # Sources:
+# https://github.com/kenzok8/ruleset/blob/main/rule/Claude.list
 # https://github.com/Sor85/claude-ruleset/blob/main/surge/claude.list
 # https://github.com/windery/claude-proxy-rules/blob/main/rules/claude.list
 # https://github.com/xyecc/claude-lane/blob/main/templates/3-rules.yaml
@@ -41,7 +42,8 @@
 # https://docs.withpersona.com/security
 # https://docs.stripe.com/security/guide
 # anthropic.ai is an additional user-supplied domain.
-# Narrow Sentry/Datadog targets replace broad keywords; IP ranges use official inbound ranges.
+# Sentry remains scoped. kenzok8 merge adds broader Datadog suffixes and keyword fallbacks.
+# IP ranges include user-supplied and upstream-list additions; not all independently verified.
 
 # 主站、API、Artifacts 与 MCP 域名
 DOMAIN-SUFFIX,anthropic.ai
@@ -131,3 +133,22 @@ IP-CIDR,160.79.104.0/21,no-resolve
 IP-CIDR,153.61.208.0/20,no-resolve
 IP-CIDR6,2607:6bc0::/48,no-resolve
 IP-ASN,399358,no-resolve
+
+# kenzok8 Claude.list 补充（2026-11-07，按用户要求合并）
+# 关键词与 Datadog/Sift 共享域名会同时影响其他应用的匹配流量。
+# IPv6 /32 覆盖原有 /48，保留原条目以记录来源。
+DOMAIN-SUFFIX,anthropic.team
+DOMAIN-SUFFIX,claude.new
+DOMAIN-SUFFIX,claudeacademy.com
+DOMAIN-SUFFIX,claudepages.dev
+DOMAIN-SUFFIX,claudestudio.com
+DOMAIN-SUFFIX,chatbotclaude.com
+DOMAIN-SUFFIX,ant.dev
+DOMAIN-SUFFIX,antspace.dev
+DOMAIN-KEYWORD,anthropic
+DOMAIN-KEYWORD,claude
+DOMAIN-SUFFIX,datadoghq.com
+DOMAIN-SUFFIX,datadoghq.eu
+DOMAIN-SUFFIX,sift.com
+DOMAIN-SUFFIX,siftscience.com
+IP-CIDR6,2607:6bc0::/32,no-resolve
