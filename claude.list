@@ -1,13 +1,21 @@
 # NAME: Claude Full
 # UPDATED: 2026-11-07
-# TOTAL: 68
+# TOTAL: 85
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
-# REVIEW: Google/GitHub shared services use dedicated routing; see google-routing-fix-20261010.md
+# REVIEW: Broad coverage requested 2026-11-07; Google Storage and GitHub Raw now included.
 # Manually reviewed merge; upstream changes are not automatically merged.
 # Shared payment, CAPTCHA, telemetry and download hosts affect other apps too.
 # Sources:
+# https://raw.githubusercontent.com/cnsiming/ProxyRules/main/Claude.list
+# https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/classical/anthropic.yaml
+# https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Claude/Claude.list
+# https://raw.githubusercontent.com/kenzok8/ruleset/main/rule/Claude.list
+# https://raw.githubusercontent.com/Sor85/claude-ruleset/main/surge/claude.list
+# https://raw.githubusercontent.com/ma-wenqian/ai-proxy-rules/main/rules/claude.list
+# https://raw.githubusercontent.com/xiaolai/anthropic-claude-surge-rules-set/main/dist/anthropic.list
+# https://raw.githubusercontent.com/erwanjun/surge-claude-rules/main/Surge/Claude.list
 # https://github.com/kenzok8/ruleset/blob/main/rule/Claude.list
 # https://github.com/Sor85/claude-ruleset/blob/main/surge/claude.list
 # https://github.com/windery/claude-proxy-rules/blob/main/rules/claude.list
@@ -42,7 +50,7 @@
 # https://docs.withpersona.com/security
 # https://docs.stripe.com/security/guide
 # anthropic.ai is an additional user-supplied domain.
-# Sentry remains scoped. kenzok8 merge adds broader Datadog suffixes and keyword fallbacks.
+# Broad Sentry/Datadog/Sift/Segment coverage and keyword fallbacks are intentional.
 # IP ranges include user-supplied and upstream-list additions; not all independently verified.
 
 # 主站、API、Artifacts 与 MCP 域名
@@ -73,7 +81,7 @@ DOMAIN,anthropic.auth0.com
 DOMAIN,anthropic-com.ghost.io
 DOMAIN-SUFFIX,o1158394.ingest.us.sentry.io
 
-# Google 登录、字体、支付、云存储与源码服务使用独立 Google 分组。
+# Google 登录、字体等沿用其他分流；storage.googleapis.com 已加入末尾补充规则。
 
 # Fathom 分析服务（共享域名）
 DOMAIN,cdn.usefathom.com
@@ -114,7 +122,7 @@ DOMAIN,registry.npmjs.org
 DOMAIN,formulae.brew.sh
 
 # 可选插件与开发环境依赖（共享服务，不是每次 Claude 会话必需）
-# GitHub / GitHub MCP / GHCR use dedicated GitHub routing; excluded from this global AI list.
+# GitHub/GHCR retain dedicated routing except raw.githubusercontent.com, included below.
 # uvx / pip 启动 Python MCP 时的默认索引及包文件
 DOMAIN,pypi.org
 DOMAIN,files.pythonhosted.org
@@ -152,3 +160,24 @@ DOMAIN-SUFFIX,datadoghq.eu
 DOMAIN-SUFFIX,sift.com
 DOMAIN-SUFFIX,siftscience.com
 IP-CIDR6,2607:6bc0::/32,no-resolve
+
+# GitHub 多源补全（2026-11-07；用户要求宁多毋缺）
+# 共享存储、源码下载、遥测与 VS Code 服务的其他应用流量也可能命中 ClaudeAI。
+# 上游条目按原意保留；域名所有权和必需性并非均经官方独立确认。
+DOMAIN,storage.googleapis.com
+DOMAIN,raw.githubusercontent.com
+DOMAIN-KEYWORD,datadog
+DOMAIN-KEYWORD,sentry
+DOMAIN-KEYWORD,sift
+DOMAIN-SUFFIX,sentry.io
+DOMAIN,downloads.claude.ai
+DOMAIN,cdn.growthbook.io
+DOMAIN,api.anthropic.com
+DOMAIN-SUFFIX,segment.io
+DOMAIN-SUFFIX,segment.com
+DOMAIN-SUFFIX,anthropic.org
+DOMAIN-SUFFIX,anthropic.systems
+DOMAIN-SUFFIX,anthropicusercontent.com
+DOMAIN,marketplace.visualstudio.com
+DOMAIN,vscode.blob.core.windows.net
+DOMAIN,update.code.visualstudio.com
