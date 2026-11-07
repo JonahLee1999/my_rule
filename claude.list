@@ -1,10 +1,10 @@
 # NAME: Claude Full
 # UPDATED: 2026-11-07
-# TOTAL: 85
+# TOTAL: 83
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
-# REVIEW: Broad coverage requested 2026-11-07; Google Storage and GitHub Raw now included.
+# REVIEW: Broad coverage; Google Storage and GitHub Raw excluded by user request.
 # Manually reviewed merge; upstream changes are not automatically merged.
 # Shared payment, CAPTCHA, telemetry and download hosts affect other apps too.
 # Sources:
@@ -81,7 +81,7 @@ DOMAIN,anthropic.auth0.com
 DOMAIN,anthropic-com.ghost.io
 DOMAIN-SUFFIX,o1158394.ingest.us.sentry.io
 
-# Google 登录、字体等沿用其他分流；storage.googleapis.com 已加入末尾补充规则。
+# Google 登录、字体和 Google Storage 沿用独立 Google 分流。
 
 # Fathom 分析服务（共享域名）
 DOMAIN,cdn.usefathom.com
@@ -122,7 +122,7 @@ DOMAIN,registry.npmjs.org
 DOMAIN,formulae.brew.sh
 
 # 可选插件与开发环境依赖（共享服务，不是每次 Claude 会话必需）
-# GitHub/GHCR retain dedicated routing except raw.githubusercontent.com, included below.
+# GitHub / GitHub Raw / GHCR retain dedicated GitHub routing.
 # uvx / pip 启动 Python MCP 时的默认索引及包文件
 DOMAIN,pypi.org
 DOMAIN,files.pythonhosted.org
@@ -162,10 +162,8 @@ DOMAIN-SUFFIX,siftscience.com
 IP-CIDR6,2607:6bc0::/32,no-resolve
 
 # GitHub 多源补全（2026-11-07；用户要求宁多毋缺）
-# 共享存储、源码下载、遥测与 VS Code 服务的其他应用流量也可能命中 ClaudeAI。
+# 共享遥测与 VS Code 服务的其他应用流量也可能命中 ClaudeAI。
 # 上游条目按原意保留；域名所有权和必需性并非均经官方独立确认。
-DOMAIN,storage.googleapis.com
-DOMAIN,raw.githubusercontent.com
 DOMAIN-KEYWORD,datadog
 DOMAIN-KEYWORD,sentry
 DOMAIN-KEYWORD,sift
