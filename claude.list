@@ -1,6 +1,6 @@
 # NAME: Claude Full
-# UPDATED: 2026-11-07
-# TOTAL: 83
+# UPDATED: 2026-11-19
+# TOTAL: 85
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
@@ -179,3 +179,8 @@ DOMAIN-SUFFIX,anthropicusercontent.com
 DOMAIN,marketplace.visualstudio.com
 DOMAIN,vscode.blob.core.windows.net
 DOMAIN,update.code.visualstudio.com
+
+# User-supplied additions (2026-11-19).
+# Google FCM token host only; the supplied IP range also routes non-Claude traffic.
+DOMAIN,fcmtoken.googleapis.com
+IP-CIDR,34.8.0.0/16,no-resolve
