@@ -1,6 +1,6 @@
 # NAME: Claude Full
-# UPDATED: 2026-11-19
-# TOTAL: 87
+# UPDATED: 2026-11-23
+# TOTAL: 90
 # FORMAT: Surge RULE-SET; policy is specified in the profile.
 # REPO: https://github.com/JonahLee1999/my_rule
 # URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/claude.list
@@ -102,9 +102,11 @@ DOMAIN,api.segment.io
 # 共享客服服务（会影响其他网站）
 DOMAIN-SUFFIX,intercom.io
 DOMAIN-SUFFIX,intercomcdn.com
+DOMAIN-SUFFIX,intercomassets.com
+DOMAIN-SUFFIX,intercom-messenger.com
 
 # 共享验证码服务（会影响其他网站）
-DOMAIN,challenges.cloudflare.com
+DOMAIN-SUFFIX,challenges.cloudflare.com
 DOMAIN-SUFFIX,hcaptcha.com
 
 # 按需身份验证：Claude 官方明确使用 Persona；包含 SDK、CDN 和核验页面。
@@ -182,10 +184,13 @@ DOMAIN,update.code.visualstudio.com
 
 # User-supplied additions (2026-11-19).
 # Google FCM token host only; the supplied IP range also routes non-Claude traffic.
-DOMAIN,fcmtoken.googleapis.com
+DOMAIN-SUFFIX,fcmtoken.googleapis.com
 IP-CIDR,34.8.0.0/16,no-resolve
 
 # one-exit additions: shared CAPTCHA and analytics domains.
 # https://github.com/wquguru/one-exit
 DOMAIN-SUFFIX,recaptcha.net
 DOMAIN-SUFFIX,usefathom.com
+
+# User-supplied screenshot addition (2026-11-23); shared identity verification service.
+DOMAIN-SUFFIX,yoti.com
