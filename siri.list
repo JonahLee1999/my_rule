@@ -1,0 +1,22 @@
+# NAME: Siri AI
+# UPDATED: 2026-11-28
+# TOTAL: 14
+# FORMAT: Surge RULE-SET; policy is specified in the profile.
+# REPO: https://github.com/JonahLee1999/my_rule
+# URL: https://raw.githubusercontent.com/JonahLee1999/my_rule/main/siri.list
+# REVIEW: Siri / Apple Intelligence endpoints. Place before Apple rule set and anti-AD.
+# chatgpt.com / openai.com are intentionally excluded; they are covered by openai.list.
+DOMAIN-SUFFIX,itunes.apple.com
+DOMAIN-SUFFIX,smp-device-content.apple.com
+DOMAIN-SUFFIX,xp.apple.com
+DOMAIN-SUFFIX,mesu.apple.com
+DOMAIN,guzzoni.apple.com
+DOMAIN-SUFFIX,smoot.apple.com
+DOMAIN,gateway.icloud.com
+DOMAIN,gs-loc-cn.apple.com
+DOMAIN,gspe1-ssl.ls.apple.com
+DOMAIN,p150-acsegateway.icloud.com
+DOMAIN,setup.icloud.com
+DOMAIN,bag.itunes.apple.com
+DOMAIN-KEYWORD,siri
+DOMAIN-SUFFIX,icloud-content.com
