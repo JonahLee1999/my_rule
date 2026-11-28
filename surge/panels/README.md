@@ -1,8 +1,9 @@
 # Surge 面板
 
-当前使用三个面板：Claude 出口、机场余额与到期、本机网络状态。
+当前使用四个面板：Claude 出口、AI 解锁检测、机场余额与到期、本机网络状态。
 
 - `egress-ip.js`：通过 `argument=claude` 指定 ClaudeAI 查询出口。显示 IP、地区、ISP、ASN 和查询时间；不代表账号或服务解锁检测。脚本的其他预设仍可按需使用。
+- `ai-unlock.js`：分别经 ClaudeAI / OpenAI / Gemini / Siri AI 策略检测 Claude、ChatGPT、Gemini 能否进入，并显示 Cloudflare 看到的出口国家。Claude 看 claude.ai 是否跳转到 app-unavailable-in-region；ChatGPT 看合规接口的 unsupported_country 与 iOS App 的 VPN 提示；Gemini 看页面地区开关 45631641。Siri AI 只显示出口。`argument` 可用逗号选择服务，默认 `claude,openai,gemini,siri`。2026-11-29 在 Surge Mac 6.12 验证：美国出口全部可用，国内直连正确识别为不支持。
 - `subscription-status.js`：按 Nexitally、Tagss、Crossgo、Miaona、Bywave 顺序展示订阅信息。从 Surge 本机 API 读取当前 `[Proxy Group]` 的 `policy-path`，使用 `Proxy` 策略访问现有订阅。标准数据来自 `subscription-userinfo`；兼容 Miaona 的内嵌 SubscribeInfo 面板。
 - `network-status.js`：显示本机接口、Wi-Fi、IPv4/IPv6、网关、DNS、出站模式，以及 macOS 系统代理和增强模式；不发出外部网络请求。IPv6 地址存在不代表已测试公网连通性。
 
@@ -22,11 +23,13 @@
 [Script]
 # GitHub 托管的面板脚本；每日检查脚本更新。
 claude-ip = type=generic,timeout=15,argument=claude,script-path=https://raw.githubusercontent.com/JonahLee1999/my_rule/main/surge/panels/egress-ip.js,script-update-interval=86400
+ai-unlock = type=generic,timeout=20,script-path=https://raw.githubusercontent.com/JonahLee1999/my_rule/main/surge/panels/ai-unlock.js,script-update-interval=86400
 subscription-status = type=generic,timeout=18,script-path=https://raw.githubusercontent.com/JonahLee1999/my_rule/main/surge/panels/subscription-status.js,script-update-interval=86400
 network-status = type=generic,timeout=5,script-path=https://raw.githubusercontent.com/JonahLee1999/my_rule/main/surge/panels/network-status.js,script-update-interval=86400
 
 [Panel]
 Claude 出口 = title="Claude 出口",content="打开面板后查询出口",script-name=claude-ip,update-interval=600
+AI 解锁检测 = title="AI 解锁检测",content="打开面板后检测",script-name=ai-unlock,update-interval=1800
 机场余额与到期 = title="机场余额与到期",content="打开面板后读取各订阅状态",script-name=subscription-status,update-interval=3600
 本机网络状态 = title="本机网络状态",content="打开面板后读取网络状态",script-name=network-status,update-interval=30
 ```
